@@ -1,0 +1,24 @@
+<!-- <h1>Counter is:{{count}}</h1>
+<div class="d-flex  justify-content-center mt-4 gap-4">
+    <button class="btn btn-success" (click)="increaseCountVal()">+</button>
+    <button class="btn btn-danger" (click)="decreaseCountVal()">-</button>
+    <h1>Counter is:{{counter | async }}</h1>
+</div> -->
+
+<div *ngIf="notifications.length > 0">
+  <h2>Notifications:</h2>
+  <ul>
+    <li *ngFor="let notification of notifications">{{ notification }}</li>
+  </ul>
+</div>
+<div *ngIf="notifications.length === 0">
+  <p>No notifications available.</p>
+</div>
+
+<h1>Counter is:{{count}}</h1>
+<div class="d-flex  justify-content-center mt-4 gap-4">
+    <button class="btn btn-success" (click)="increaseCountVal()">+</button>
+    <button class="btn btn-danger" (click)="decreaseCountVal()">-</button>
+    <h1>Counter is:{{counter | async }}</h1>
+</div>
+

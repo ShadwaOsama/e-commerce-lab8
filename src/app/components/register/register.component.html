@@ -1,0 +1,68 @@
+<form [formGroup]="userRegisterForm" (submit)="register()">
+  <!-- <h1>{{userRegisterForm.value | json}}</h1> -->
+  <h1>{{name?.errors| json}}</h1>
+    <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Name</label>
+        <input type="text" name="name" formControlName="name" class="form-control" id="exampleInputPassword1">
+        @if(name?.touched && name?.invalid){
+            <div class="text-danger">
+                @if(name?.errors?.['required']){
+                    <p>Name is Required</p>
+                }
+
+                @if(name?.errors?.['pattern']){
+                    <p>Name must be between 3 to 10 carachters.</p>
+
+                }
+
+            </div>
+        }
+
+      </div>
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Email address</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+    name="email" formControlName="email">
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword1"
+    name="password" formControlName="password">
+  </div>
+
+  <div formGroupName="address">
+    <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">City</label>
+        <input type="text" class="form-control" id="exampleInputPassword1"
+        name="city" formControlName="city">
+      </div>
+      <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Street</label>
+        <input type="text" class="form-control" id="exampleInputPassword1"
+        name="street" formControlName="street">
+      </div>
+
+</div>
+<div formArrayName="phoneNums">
+  <div class="mb-3 row" *ngFor="let ph of phones.controls; let i=index">
+    <label for="exampleInputPassword{{i}}" class="form-label">#{{i+1}} Phone Number</label>
+    <div class="col-10">
+      <input type="text" class="form-control" id="exampleInputPassword{{i}}" name="phone" formControlName="{{i}}">
+    </div>
+    <!-- <div class="col-1">
+      <button class="btn btn-danger" type="button" (click)="deletePhone(i)">-</button>
+    </div> -->
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <button class="btn btn-success my-1" (click)="addNewPhone()">+</button>
+    </div>
+    <div class="col-12">
+      <button class="btn btn-danger my-4" (click)="deleteLastPhone()"> - </button>
+    </div>
+
+  </div>
+</div>
+
+  <button [disabled]="userRegisterForm.invalid" type="submit" class="btn btn-primary">Submit</button>
+</form>
